@@ -98,7 +98,7 @@ def compute_data_by_country(data):
         format='column',
     )
 
-    return data
+    return df
 
 
 def compute_data_perfume_by_brand(data):
