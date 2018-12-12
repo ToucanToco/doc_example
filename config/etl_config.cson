@@ -1,0 +1,76 @@
+DATA_SOURCES: [
+  {
+    domain: 'data_input'
+    type: 'csv'
+    file: 'data-product-corporation.csv'
+    load: false
+    validation: [
+      {
+        type: 'data_type'
+        expected:
+          brand: 'string'
+          Country: 'string'
+          product_line: 'string'
+          'Jun 2016': 'number'
+      }
+      {
+        type: 'no_duplicates'
+        params:
+          columns: [
+            'brand'
+            'Country'
+            'product_line'
+          ]
+      }
+    ]
+  }
+  {
+    domain: 'mapping_input'
+    type: 'csv'
+    file: 'mapping_brands_class.csv'
+    load: false
+    validation: [
+      {
+        type: 'data_type'
+        expected:
+          brand: 'string'
+          brand_class: 'string'
+      }
+      {
+        type: 'no_duplicates'
+        params:
+          columns: [
+            'brand'
+          ]
+      }
+    ]
+  }
+]
+REPORTS: []
+DASHBOARDS: []
+MONGO_INDEXES: []
+PIPELINE: [
+  {
+    input_domains: [
+      'data_input'
+      'mapping_input'
+    ]
+    function_name: 'prepare_data'
+    output_domain: 'c_data'
+    load: false
+  }
+  {
+    input_domains: [
+      'c_data'
+    ]
+    function_name: 'compute_data_by_country'
+    output_domain: 'data_by_country'
+  }
+  {
+    input_domains: [
+      'c_data'
+    ]
+    function_name: 'compute_data_perfume_by_brand'
+    output_domain: 'data_perfume_by_brand'
+  }
+]

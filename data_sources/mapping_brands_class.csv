@@ -1,6 +1,6 @@
-brand,brand_class
-Delicate,Premium
-Fake Lux.,Luxury
-Golden Fragrances,Premium
-Luxury Cpy,Luxury
-New Sense,Premium
+brand,brand_class,other
+Delicate,Premium,1
+Fake Lux.,Luxury,1
+Golden Fragrances,Premium,2
+Luxury Cpy,Luxury,3
+New Sense,Premium,1
