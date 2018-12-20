@@ -37,7 +37,7 @@ default_report  entityGroup        entityName        user_group
             'reports': {'$or': possibilities},
         }
         if default is not None:
-            permission['default'] = default
+            permission['default'] = {'reports': default}
         permissions.append(permission)
 
     """
@@ -48,7 +48,10 @@ default_report  entityGroup        entityName        user_group
                 {'entityGroup': 'manager'},
                 {'entityName': 'reportAllemagne1'}
             ]},
-            'default': {'entityName': 'reportAllemagne1'}
+            'default': {
+                'reports':{
+                    'entityName': 'reportAllemagne1'
+                }
         },
         {
             'group': 'FranceManager',
@@ -57,14 +60,21 @@ default_report  entityGroup        entityName        user_group
                 {'entityName': 'reportFrance1'},
                 {'entityName': 'reportFrance2'}
             ]},
-            'default': {'entityName': 'reportFrance1'}}
+            'default': {
+                'reports':{
+                    'entityName': 'reportFrance1'
+                }
+            }
         },
         {
             'group': 'ParisManager',
             'reports': {'$or': [
                 {'entityGroup': 'paris', 'entityName': 'reportFrance1'}
             ]},
-            'default': {'entityGroup': 'paris', 'entityName': 'reportFrance1'}
+            'default': {
+                'reports':{
+                    'entityGroup': 'paris', 'entityName': 'reportFrance1'
+                }
         }
     ]
     """
